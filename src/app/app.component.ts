@@ -18,14 +18,6 @@ export class AppComponent {
   title = 'autotrade-web';
   data:any = {}
 
-//   private httpOptions = {
-//   headers: new HttpHeaders({
-//     'Accept': 'text/html, application/xhtml+xml, */*',
-//     'Content-Type': 'application/x-www-form-urlencoded'
-//   }),
-//   responseType: 'text'
-// };
-
   constructor(private http: HttpClient){
   }
 
@@ -39,18 +31,18 @@ export class AppComponent {
 
   getData(){
 
-    setInterval(() => {
-      let url = 'https://raw.githubusercontent.com/milesholt/autotrade1/version2/core/data/CS.D.XLMUSD.TODAY.IP/CS.D.XLMUSD.TODAY.IP_streamdata.json';
-      this.http.get(url, {responseType: 'text'}).subscribe((res) =>{
-
-         let base64 = res;
-         let buff = this._base64ToArrayBuffer(base64);
-         let string = this._arrayBufferToString(buff);
-         let obj = JSON.parse(string);
-         this.data = obj;
-
-      });
-    },10000);
+    // setInterval(() => {
+    //   let url = 'https://raw.githubusercontent.com/milesholt/autotrade1/version2/core/data/CS.D.XLMUSD.TODAY.IP/CS.D.XLMUSD.TODAY.IP_streamdata.json';
+    //   this.http.get(url, {responseType: 'text'}).subscribe((res) =>{
+    //
+    //      let base64 = res;
+    //      let buff = this._base64ToArrayBuffer(base64);
+    //      let string = this._arrayBufferToString(buff);
+    //      let obj = JSON.parse(string);
+    //      this.data = obj;
+    //
+    //   });
+    // },10000);
 
   }
 
