@@ -22,7 +22,9 @@
     "Buffer": "0.0.0",
     "buffer-from": "^1.1.1",
     "rxjs": "~6.5.5",
-    "zone.js": "~0.10.3"
+    "zone.js": "~0.10.3",
+    "typescript": "~3.9.5",
+    "@angular-devkit/build-angular": "^0.1002.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1002.0",
