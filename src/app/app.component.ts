@@ -5,7 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
-import * as Buffer from "Buffer";
+//import * as Buffer from "Buffer";
+
 
 @Injectable()
 @Component({
@@ -37,6 +38,7 @@ export class AppComponent {
   }
 
   getData(){
+
     setInterval(() => {
       let url = 'https://raw.githubusercontent.com/milesholt/autotrade1/version2/core/data/CS.D.XLMUSD.TODAY.IP/CS.D.XLMUSD.TODAY.IP_streamdata.json';
       this.http.get(url, {responseType: 'text'}).subscribe((res) =>{
