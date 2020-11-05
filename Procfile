@@ -1,1 +1,1 @@
-web: ng serve --port $PORT --open=false --liveReload=false
+web: ng serve --port $PORT --host 0.0.0.0
