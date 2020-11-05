@@ -43,14 +43,30 @@ export class AppComponent {
       let url = 'https://raw.githubusercontent.com/milesholt/autotrade1/version2/core/data/CS.D.XLMUSD.TODAY.IP/CS.D.XLMUSD.TODAY.IP_streamdata.json';
       this.http.get(url, {responseType: 'text'}).subscribe((res) =>{
 
-         let buff = new Buffer.from(res, 'base64');
-         let string = buff.toString('ascii');
+         let base64 = res;
+         let buff = this._base64ToArrayBuffer(base64);
+         let string = this._arrayBufferToString(buff);
          let obj = JSON.parse(string);
-         console.log(obj);
          this.data = obj;
+
       });
     },10000);
 
   }
+
+   _base64ToArrayBuffer(base64) {
+    var binary_string = window.atob(base64);
+    var len = binary_string.length;
+    var bytes = new Uint8Array(len);
+    for (var i = 0; i < len; i++) {
+        bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes.buffer;
+  }
+
+  _arrayBufferToString(buff) {
+    return String.fromCharCode.apply(null, new Uint8Array(buff));
+  }
+
 
 }

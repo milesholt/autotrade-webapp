@@ -1,6 +1,4 @@
 
-declare var require: any;
-declare var global: any;
 
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.
@@ -65,9 +63,3 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
-
- (window as any).global = window;
-global.Buffer = global.Buffer || require('buffer').Buffer;
-(window as any).process = {
-  version: ''
-};
