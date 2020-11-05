@@ -11,12 +11,9 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-devkit/build-angular": "^0.1002.0",
     "@angular/animations": "~10.0.11",
-    "@angular/cli": "~10.0.7",
     "@angular/common": "~10.0.11",
     "@angular/compiler": "~10.0.11",
-    "@angular/compiler-cli": "~10.0.11",
     "@angular/core": "~10.0.11",
     "@angular/forms": "~10.0.11",
     "@angular/platform-browser": "~10.0.11",
@@ -25,11 +22,7 @@
     "Buffer": "0.0.0",
     "buffer-from": "^1.1.1",
     "rxjs": "~6.5.5",
-    "ts-node": "~8.3.0",
-    "tslib": "^2.0.0",
-    "typescript": "~3.9.5",
-    "zone.js": "~0.10.3",
-    "@types/node": "^12.19.3"
+    "zone.js": "~0.10.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1002.0",
