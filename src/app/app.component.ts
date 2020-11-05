@@ -5,6 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
+import * as Buffer from "Buffer";
+
 @Injectable()
 @Component({
   selector: 'app-root',
@@ -35,17 +37,17 @@ export class AppComponent {
   }
 
   getData(){
-    // setInterval(() => {
-    //   let url = 'https://raw.githubusercontent.com/milesholt/autotrade1/version2/core/data/CS.D.XLMUSD.TODAY.IP/CS.D.XLMUSD.TODAY.IP_streamdata.json';
-    //   this.http.get(url, {responseType: 'text'}).subscribe((res) =>{
-    //
-    //      let buff = new Buffer.from(res, 'base64');
-    //      let string = buff.toString('ascii');
-    //      let obj = JSON.parse(string);
-    //      console.log(obj);
-    //      this.data = obj;
-    //   });
-    // },10000);
+    setInterval(() => {
+      let url = 'https://raw.githubusercontent.com/milesholt/autotrade1/version2/core/data/CS.D.XLMUSD.TODAY.IP/CS.D.XLMUSD.TODAY.IP_streamdata.json';
+      this.http.get(url, {responseType: 'text'}).subscribe((res) =>{
+
+         let buff = new Buffer.from(res, 'base64');
+         let string = buff.toString('ascii');
+         let obj = JSON.parse(string);
+         console.log(obj);
+         this.data = obj;
+      });
+    },10000);
 
   }
 
