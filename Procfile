@@ -1,1 +1,1 @@
-web: ng build
+web: ng serve --port $PORT --nobrowser --nolivereload --noopen
