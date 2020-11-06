@@ -45,7 +45,7 @@ export class AppComponent {
   async ngAfterViewInit(){
       console.log('Loaded web app. Getting data...');
       console.log(environment);
-      this.getData();
+      
       this.go();
   }
 
