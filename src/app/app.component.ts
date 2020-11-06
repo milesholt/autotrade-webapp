@@ -24,7 +24,8 @@ export class AppComponent {
   //c884072821024093ad3ecdb8508b1b86c8eabbc5
   //166cce69f268d4817662d8c40790c00797cbb443
   //Authenticate with Personal Access Token from Github Developer Settings
-  octokit = new Octokit({ auth: '166cce69f268d4817662d8c40790c00797cbb443' });
+  //Dont put as string otherwise it will delete the token!
+  octokit = new Octokit({ auth: process.env.GIT_PERSONAL_ACCESS_TOKEN });
   owner = 'milesholt';
   branch = 'version2';
   repo = 'autotrade1';
