@@ -9,6 +9,7 @@ import GitHub from 'github-api';
 import { Octokit } from "@octokit/core";
 //import * as Buffer from "Buffer";
 
+import { environment } from './../environments/environment';
 
 
 @Injectable()
@@ -26,10 +27,9 @@ export class AppComponent {
   //166cce69f268d4817662d8c40790c00797cbb443
   //Authenticate with Personal Access Token from Github Developer Settings
   //Dont put as string otherwise it will delete the token!
-  octokit = new Octokit({ auth: process.env.GIT_PERSONAL_ACCESS_TOKEN });
+  //octokit = new Octokit({ auth: process.env.GIT_PERSONAL_ACCESS_TOKEN });
 
-
-
+  octokit = new Octokit({ auth: environment.git_token })
   owner = 'milesholt';
   branch = 'version2';
   repo = 'autotrade1';
@@ -44,9 +44,9 @@ export class AppComponent {
 
   async ngAfterViewInit(){
       console.log('Loaded web app. Getting data...');
-      console.log('token:' + process.env.GIT_PERSONAL_ACCESS_TOKEN);
+      console.log(environment);
       //this.getData();
-      this.go();
+      //this.go();
   }
 
   async go(){
