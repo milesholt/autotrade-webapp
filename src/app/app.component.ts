@@ -29,7 +29,7 @@ export class AppComponent {
   //Dont put as string otherwise it will delete the token!
   //octokit = new Octokit({ auth: process.env.GIT_PERSONAL_ACCESS_TOKEN });
 
-  octakit = new Octokit({ auth: environment.git_token })
+  octokit = new Octokit({ auth: environment.git_token })
   owner = 'milesholt';
   branch = 'version2';
   repo = 'autotrade1';
