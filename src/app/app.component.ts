@@ -5,6 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
+import GitHub from 'github-api';
+import { Octokit } from "@octokit/core";
 //import * as Buffer from "Buffer";
 
 
@@ -18,31 +20,74 @@ export class AppComponent {
   title = 'autotrade-web';
   data:any = {}
 
+  gh = new GitHub();
+  //c884072821024093ad3ecdb8508b1b86c8eabbc5
+  //166cce69f268d4817662d8c40790c00797cbb443
+  //Authenticate with Personal Access Token from Github Developer Settings
+  octokit = new Octokit({ auth: '166cce69f268d4817662d8c40790c00797cbb443' });
+  owner = 'milesholt';
+  branch = 'version2';
+  repo = 'autotrade1';
+  sha = 0;
+  path = 'core/data/CS.D.XLMUSD.TODAY.IP/CS.D.XLMUSD.TODAY.IP_streamdata.json';
+
   constructor(private http: HttpClient){
   }
 
   ngOnInit(){
   }
 
-  ngAfterViewInit(){
+  async ngAfterViewInit(){
       console.log('Loaded web app. Getting data...');
-      this.getData();
+      //this.getData();
+      this.go();
   }
 
-  getData(){
+  async go(){
+    await this.getFile(this.path);
 
-    setInterval(() => {
-      let url = 'https://raw.githubusercontent.com/milesholt/autotrade1/version2/core/data/CS.D.XLMUSD.TODAY.IP/CS.D.XLMUSD.TODAY.IP_streamdata.json';
-      this.http.get(url, {responseType: 'text'}).subscribe((res) =>{
+    await this.wait(10000).then(r => {
+      this.go();
+    });
+  }
 
-         let base64 = res;
-         let buff = this._base64ToArrayBuffer(base64);
-         let string = this._arrayBufferToString(buff);
-         let obj = JSON.parse(string);
-         this.data = obj;
+  async wait(ms){
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
-      });
-    },10000);
+  //Get file
+  //Use If-None-Match to flush cache
+  async getFile(path){
+    console.log('Getting file from github');
+    console.log(path);
+    const result = await this.octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+      owner: this.owner,
+      repo: this.repo,
+      path: this.path,
+      ref: this.branch,
+      headers: {
+      'If-None-Match': ''
+      }
+    }).catch(e => {
+      console.log(e);
+    });
+
+    //console.log(result.data.content);
+    this.sha = result.data.sha;
+    console.log('getting file, sha is now:' + this.sha);
+    //decode data from base64 string to object
+
+    let base64 = result.data.content;
+    let buff = this._base64ToArrayBuffer(base64);
+    let string = this._arrayBufferToString(buff);
+
+
+    console.log(string);
+    let buff2 = this._base64ToArrayBuffer(string);
+    let string2 = this._arrayBufferToString(buff2);
+    console.log(string2);
+    let obj = JSON.parse(string2);
+    this.data = obj;
 
   }
 
