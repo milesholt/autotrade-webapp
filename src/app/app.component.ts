@@ -61,7 +61,7 @@ export class AppComponent {
   async getFile(path){
     console.log('Getting file from github');
     console.log(path);
-    const result = await this.octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+    const result:any = await this.octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
       owner: this.owner,
       repo: this.repo,
       path: this.path,
