@@ -45,7 +45,7 @@ export class AppComponent {
   async ngAfterViewInit(){
       console.log('Loaded web app. Getting data...');
       console.log(environment);
-      
+
       this.go();
   }
 
@@ -89,10 +89,10 @@ export class AppComponent {
 
 
     console.log(string);
-    let buff2 = this._base64ToArrayBuffer(string);
-    let string2 = this._arrayBufferToString(buff2);
-    console.log(string2);
-    let obj = JSON.parse(string2);
+    //let buff2 = this._base64ToArrayBuffer(string);
+    //let string2 = this._arrayBufferToString(buff2);
+    //console.log(string2);
+    let obj = JSON.parse(string);
     this.data = obj;
 
   }
