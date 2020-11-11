@@ -26,7 +26,7 @@ export class AppComponent {
 
   @ViewChild(MatTable, { static: false }) table: MatTable<any>;
 
-  displayedColumns: string[] = ['epic', 'closeAsk', 'closeBid', 'newlimit', 'stopLevel', 'updated'];
+  displayedColumns: string[] = ['epic', 'closeAsk', 'closeBid', 'newLimit', 'stopLevel', 'updated','amount'];
   dataSource = data;
 
   gh = new GitHub();
@@ -94,9 +94,18 @@ export class AppComponent {
     let buff = this._base64ToArrayBuffer(base64);
     let string = this._arrayBufferToString(buff);
     let obj = JSON.parse(string);
+
+    //calc ammount
+    let size = 50;
+    let close =  obj.direction == 'SELL' ? obj.closeAsk : obj.closeBid;
+    let amount = (obj.openLevel - close) * size;
+    obj.amount = amount;
+
+    //render table
     this.dataSource.push(obj);
-    console.log(this.dataSource);
     this.table.renderRows();
+
+    console.log(this.dataSource);
 
   }
 
