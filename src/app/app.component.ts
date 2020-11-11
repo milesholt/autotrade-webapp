@@ -24,7 +24,7 @@ const title = 'autotrade-web';
 })
 export class AppComponent {
 
-  @ViewChild(MatTable) table: MatTable<any>;
+  @ViewChild(MatTable, { static: false }) table: MatTable<any>;
 
   displayedColumns: string[] = ['epic', 'closeAsk', 'closeBid', 'newlimit', 'stopLevel', 'updated'];
   dataSource = data;
