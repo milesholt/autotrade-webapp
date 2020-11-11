@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
@@ -11,6 +12,8 @@ import { Octokit } from "@octokit/core";
 
 import { environment } from './../environments/environment';
 
+const data:any = [];
+const title = 'autotrade-web';
 
 @Injectable()
 @Component({
@@ -19,8 +22,9 @@ import { environment } from './../environments/environment';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'autotrade-web';
-  data:any = {}
+
+  displayedColumns: string[] = ['epic', 'closeAsk', 'closeBid', 'newlimit', 'stopLevel', 'updated'];
+  dataSource = data;
 
   gh = new GitHub();
   //c884072821024093ad3ecdb8508b1b86c8eabbc5
@@ -82,18 +86,11 @@ export class AppComponent {
     this.sha = result.data.sha;
     console.log('getting file, sha is now:' + this.sha);
     //decode data from base64 string to object
-
     let base64 = result.data.content;
     let buff = this._base64ToArrayBuffer(base64);
     let string = this._arrayBufferToString(buff);
-
-
-    console.log(string);
-    //let buff2 = this._base64ToArrayBuffer(string);
-    //let string2 = this._arrayBufferToString(buff2);
-    //console.log(string2);
     let obj = JSON.parse(string);
-    this.data = obj;
+    this.dataSource.push = obj;
 
   }
 
