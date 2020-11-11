@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {MatTable} from '@angular/material';
+import {MatTable} from '@angular/material/table';
 
 
 import { Observable, throwError } from 'rxjs';
