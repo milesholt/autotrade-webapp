@@ -94,7 +94,7 @@ export class AppComponent {
     let buff = this._base64ToArrayBuffer(base64);
     let string = this._arrayBufferToString(buff);
     let obj = JSON.parse(string);
-    this.dataSource.push = obj;
+    this.dataSource.push(obj);
     console.log(this.dataSource);
     this.table.renderRows();
 
