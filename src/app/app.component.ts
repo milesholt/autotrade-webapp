@@ -99,7 +99,7 @@ export class AppComponent {
     let size = 50;
     let close =  obj.direction == 'SELL' ? obj.closeAsk : obj.closeBid;
     let amount = (obj.openLevel - close) * size;
-    obj.amount = amount;
+    obj.amount = parseFloat(amount).toFixed(2);
 
     //render table
     this.dataSource.push(obj);
