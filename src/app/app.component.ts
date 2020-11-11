@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {MatTable} from '@angular/material';
 
 
 import { Observable, throwError } from 'rxjs';
@@ -22,6 +23,8 @@ const title = 'autotrade-web';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  @ViewChild(MatTable) table: MatTable<any>;
 
   displayedColumns: string[] = ['epic', 'closeAsk', 'closeBid', 'newlimit', 'stopLevel', 'updated'];
   dataSource = data;
@@ -91,6 +94,7 @@ export class AppComponent {
     let string = this._arrayBufferToString(buff);
     let obj = JSON.parse(string);
     this.dataSource.push = obj;
+    this.table.renderRows();
 
   }
 
