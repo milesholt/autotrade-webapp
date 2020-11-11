@@ -71,6 +71,7 @@ export class AppComponent {
   //Get file
   //Use If-None-Match to flush cache
   async getFile(path){
+    this.dataSource = [];
     console.log('Getting file from github');
     console.log(path);
     const result:any = await this.octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
@@ -94,6 +95,7 @@ export class AppComponent {
     let string = this._arrayBufferToString(buff);
     let obj = JSON.parse(string);
     this.dataSource.push = obj;
+    console.log(this.dataSource);
     this.table.renderRows();
 
   }
