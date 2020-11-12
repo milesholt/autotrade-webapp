@@ -14,6 +14,7 @@ import { Octokit } from "@octokit/core";
 import { environment } from './../environments/environment';
 
 const data:any = [];
+const obj = {'epic': '', 'closeAsk': '', 'closeBid': '', 'newLimit': '', 'stopLevel': '', 'updated': '', 'amount':''}
 const title = 'autotrade-web';
 
 @Injectable()
@@ -30,6 +31,7 @@ export class AppComponent {
   dataSource = data;
 
   gh = new GitHub();
+  tab:any;
   //c884072821024093ad3ecdb8508b1b86c8eabbc5
   //166cce69f268d4817662d8c40790c00797cbb443
   //Authenticate with Personal Access Token from Github Developer Settings
@@ -44,16 +46,26 @@ export class AppComponent {
   path = 'core/data/CS.D.XLMUSD.TODAY.IP/CS.D.XLMUSD.TODAY.IP_streamdata.json';
 
   constructor(private http: HttpClient){
+
   }
 
   ngOnInit(){
+
   }
 
   async ngAfterViewInit(){
       console.log('Loaded web app. Getting data...');
       console.log(environment);
+      this.dataSource.push(obj);
+      this.table.renderRows();
 
-      this.go();
+      // let t = document.querySelectorAll('#tab');
+      // let tb = t[0];
+      // let thead = tb.children[0];
+      // let tbody = tb.children[1];
+      // thead.style.cssText = "float:left;width:50%";
+      // tbody.style.cssText = "float:right;width:50%";
+      //this.go();
   }
 
   async go(){

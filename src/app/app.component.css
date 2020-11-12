@@ -1,7 +1,34 @@
+
 table {
   width: 100%;
 }
 
+tr{
+  width:100%;
+  display:table;
+}
+
 .mat-column-amount{
   font-weight:bold;
+}
+
+@media(max-width:600px){
+  table td, table th{
+    display: flex;
+    flex-flow: row;
+    height: 20px;
+    padding:20px;
+    text-align:left;
+  }
+
+  ::ng-deep .mat-table tbody{
+    float:right;
+    width:70%;
+  }
+
+  ::ng-deep .mat-table thead{
+    float:left;
+    width:30%;
+  }
+
 }
