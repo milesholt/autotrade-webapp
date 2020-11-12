@@ -46,11 +46,9 @@ export class AppComponent {
   path = 'core/data/CS.D.XLMUSD.TODAY.IP/CS.D.XLMUSD.TODAY.IP_streamdata.json';
 
   constructor(private http: HttpClient){
-
   }
 
   ngOnInit(){
-
   }
 
   async ngAfterViewInit(){
@@ -58,14 +56,7 @@ export class AppComponent {
       console.log(environment);
       this.dataSource.push(obj);
       this.table.renderRows();
-
-      // let t = document.querySelectorAll('#tab');
-      // let tb = t[0];
-      // let thead = tb.children[0];
-      // let tbody = tb.children[1];
-      // thead.style.cssText = "float:left;width:50%";
-      // tbody.style.cssText = "float:right;width:50%";
-      //this.go();
+      this.go();
   }
 
   async go(){
