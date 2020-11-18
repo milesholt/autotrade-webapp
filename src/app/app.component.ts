@@ -101,7 +101,7 @@ export class AppComponent {
     //calc ammount
     let size = 50;
     let close =  obj.direction == 'SELL' ? obj.closeAsk : obj.closeBid;
-    let amount = (obj.openLevel - close) * size;
+    let amount = (obj.direction == 'SELL' ? obj.openLevel - close : close - obj.openLevel) * size;
     obj.amount = '£' + amount.toFixed(2);
 
     //render table
